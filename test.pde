@@ -40,12 +40,12 @@ var draw = function() {
     destroy ++;*/
     noStroke();
     
-    if(mouseIsPressed){
+    if(mousePressed){
         circleX = mouseX-200;
         circleY = mouseY-200;
     }
     
-    if(keyIsPressed){
+    if(keyPressed){
         speed = -speed;
     }
 };
