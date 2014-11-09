@@ -6,15 +6,15 @@ void setup() {
 var destroy = 10;
 var circleX = 80;
 var circleY = 0;
-var angle = 0.1;
-var speed = 0.1;
+var angle = 1;
+var speed = 1;
 var circleSize = [0];
 var randomColor = [color(random(0, 255), random(0, 255), random(0, 255))];
 var draw = function() {
     pushMatrix();
     translate(200, 200);
     rotate(angle);
-    angle += 0.1;
+    angle += 1;
     background(255, 255, 255);
     textAlign(CENTER, CENTER);
     textSize(21);
@@ -23,7 +23,7 @@ var draw = function() {
         ellipse(circleX, circleY, circleSize[i], circleSize[i]);
         circleSize[i] += speed;
     }
-    if(round(circleSize[i-1]) % 1000 === 0){
+    if(round(circleSize[i-1]) % 100 === 0){
         randomColor.push(color(random(0, 255), random(0, 255), random(0, 255)));
         fill(randomColor[i]);
         circleSize.push(0);
