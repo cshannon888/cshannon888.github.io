@@ -1,6 +1,6 @@
 void setup() {
   size(400, 400);
-  frameRate(30);
+  frameRate(8);
 }
 
 var destroy = 10;
