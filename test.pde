@@ -3,7 +3,6 @@ void setup() {
   frameRate(30);
 }
 
-void draw() {}
 var destroy = 10;
 var circleX = 80;
 var circleY = 0;
@@ -50,3 +49,5 @@ var draw = function() {
         speed = -speed;
     }
 };
+
+void draw() {}
