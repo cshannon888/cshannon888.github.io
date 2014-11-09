@@ -4,7 +4,7 @@ void setup() {
 }
 
 var destroy = 10;
-var circleX = 80;
+var circleX = 180;
 var circleY = 0;
 var angle = 0.04;
 var speed = 1.25;
@@ -12,7 +12,7 @@ var circleSize = [0];
 var randomColor = [color(random(0, 255), random(0, 255), random(0, 255))];
 var draw = function() {
     pushMatrix();
-    translate(200, 200);
+    translate(500, 500);
     rotate(angle);
     angle += 0.04;
     background(255, 255, 255);
