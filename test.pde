@@ -6,6 +6,7 @@ var enemies = {
     x: 200,
     y: 0,
 };
+<script>
 var BROWN = color(176, 143, 33);
 var waffleX = 400;
 var waffleY = 370;
