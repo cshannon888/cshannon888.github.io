@@ -1,3 +1,6 @@
-body{
+body {
   background-color:rgb(30, 30, 30);
+}
+p {
+  color:rgb(100, 100, 100);
 }
