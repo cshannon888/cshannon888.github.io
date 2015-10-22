@@ -4,5 +4,7 @@
       void setup(){
         canvasSize(400, 400)
       }
+      
+      void draw() {}
     </script>
 </html>
