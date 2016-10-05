@@ -109,6 +109,10 @@ var redCycle = new LightCycle(350, 200, RED, -cycleSpeed, 0, UP, DOWN, LEFT, RIG
 var yellowCycle = new LightCycle(200, 47, YELLOW, 0, cycleSpeed, 85, 74, 72, 75);
 
 void draw = function() {
+  fill(255, 0, 0);
+  ellipse(200, 200, 20, 20);
+  
+  
     greenCycle.draw();
     redCycle.draw();
     //three player if mouse is left half of screen
