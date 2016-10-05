@@ -183,25 +183,16 @@ var draw() {
     //restart game
     mouseClicked = function(){
     	drawBackground();
-	greenCycle.x = 50;
-	greenCycle.y = 200;
-	greenCycle.speedX = cycleSpeed;
-	greenCycle.speedY = 0;
+	greenCycle = new LightCycle(50, 200, GREEN, cycleSpeed, 0, 87, 83, 65, 68);
+	redCycle = new LightCycle(350, 200, RED, -cycleSpeed, 0, UP, DOWN, LEFT, RIGHT);
+	yellowCycle = new LightCycle(200, 47, YELLOW, 0, cycleSpeed, 85, 74, 72, 75);
 	greenCycle.loser = false;
-	redCycle.x = 350;
-	redCycle.y = 200;
-	redCycle.speedX = -cycleSpeed;
-	redCycle.speedY = 0;
 	redCycle.loser = false;
-	yellowCycle.x = 200;
-	yellowCycle.y = 47;
-	yellowCycle.speedX = 0;
-	yellowCycle.speedY = cycleSpeed;
 	yellowCycle.loser = false;
 	loop();
-	greenCycle.draw();
-	redCycle.draw();
-	yellowCycle.draw();
+	//greenCycle.draw();
+	//redCycle.draw();
+	//yellowCycle.draw();
     };
 };
 
