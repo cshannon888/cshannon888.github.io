@@ -89,7 +89,7 @@ var LightCycle = function(x, y, color, speedX, speedY, upKey, downKey, leftKey, 
         //keys 65=a, 68=d, 87=w, 83=s
         //85 = u, 72 = h, 74 = j, 75 = k
         if(keys[this.upKey]){
-	    if(this.speedY != cycleSpeed){
+	    if(this.speedY !== cycleSpeed){
 		this.speedX = 0;
 		this.speedY = -cycleSpeed;
 	    }
