@@ -77,25 +77,25 @@ var LightCycle = function(x, y, color, speedX, speedY, upKey, downKey, leftKey, 
         
         //keys 65=a, 68=d, 87=w, 83=s
         //85 = u, 72 = h, 74 = j, 75 = k
-        if(keys[this.upKey] && this.speedY !== cycleSpeed){
+        if(keys[this.upKey] && this.speedY != cycleSpeed){
             this.speedX = 0;
             this.speedY = -cycleSpeed;
         }
-        if(keys[this.downKey] && this.speedY !== -cycleSpeed){
+        if(keys[this.downKey] && this.speedY != -cycleSpeed){
             this.speedX = 0;
             this.speedY = cycleSpeed;
         }
-        if(keys[this.leftKey] && this.speedX !== cycleSpeed){
+        if(keys[this.leftKey] && this.speedX != cycleSpeed){
             this.speedX = -cycleSpeed;
             this.speedY = 0;
         }
-        if(keys[this.rightKey] && this.speedX !== -cycleSpeed){
+        if(keys[this.rightKey] && this.speedX != -cycleSpeed){
             this.speedX = cycleSpeed;
             this.speedY = 0;
         }
         
         //code for collisions
-        if(this.nextColor === RED || this.nextColor === GREEN || this.nextColor === YELLOW){
+        if(this.nextColor == RED || this.nextColor == GREEN || this.nextColor == YELLOW){
             this.speedX = 0;
             this.speedY = 0;
             this.loser = true;
@@ -126,7 +126,7 @@ void draw() {
     //end the game
     
     //tie
-    if(greenCycle.loser === true && redCycle.loser === true && yellowCycle.loser === true){
+    if(greenCycle.loser == true && redCycle.loser == true && yellowCycle.loser == true){
         fill(255, 255, 255);
         textSize(30);
         textAlign(CENTER, CENTER);
@@ -135,7 +135,7 @@ void draw() {
     }
     
     //Yellow Wins
-    else if(greenCycle.loser === true && redCycle.loser === true){
+    else if(greenCycle.loser == true && redCycle.loser == true){
         fill(255, 255, 255);
         textSize(30);
         textAlign(CENTER, CENTER);
@@ -146,7 +146,7 @@ void draw() {
     }
     
     //Green Wins
-    else if(redCycle.loser === true && yellowCycle.loser === true){
+    else if(redCycle.loser == true && yellowCycle.loser == true){
         fill(255, 255, 255);
         textSize(30);
         textAlign(CENTER, CENTER);
@@ -157,7 +157,7 @@ void draw() {
     }
     
     //Red Wins
-    else if(greenCycle.loser === true && yellowCycle.loser === true){
+    else if(greenCycle.loser == true && yellowCycle.loser == true){
         fill(255, 255, 255);
         textSize(30);
         textAlign(CENTER, CENTER);
@@ -167,8 +167,8 @@ void draw() {
         noLoop();
     }
     
-    mouseClicked = function(){
+    void mouseClicked() {
         Program.restart();
-    };
-};
+    }
+}
 
