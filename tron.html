@@ -36,6 +36,7 @@ var drawBackground = function(){
     }
 };
 
+drawBackground();
 
 var keys = [];
 
@@ -124,6 +125,7 @@ var redCycle = new LightCycle(600, 300, RED, -cycleSpeed, 0, UP, DOWN, LEFT, RIG
 var yellowCycle = new LightCycle(400, 97, YELLOW, 0, cycleSpeed, 85, 74, 72, 75);
 
 drawBackground();
+
 var draw() {
     greenCycle.draw();
     redCycle.draw();
