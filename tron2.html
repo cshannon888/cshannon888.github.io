@@ -30,8 +30,6 @@ var cycleSpeed = 2;
 var drawBackground = function(){
     background(DARKBLUE);
     stroke(LIGHTBLUE);
-    strokeWeight(1);
-    fill(LIGHTBLUE);
     for(var i = 0; i < 400; i+=20){
         line(i, 0, i, 400);
         line(0, i, 400, i); 
@@ -182,11 +180,15 @@ var draw() {
         noLoop();
     }
     
+    //restart game
     mouseClicked = function(){
     	drawBackground();
 	greenCycle = LightCycle(50, 200, GREEN, cycleSpeed, 0, 87, 83, 65, 68);
         redCycle = LightCycle(350, 200, RED, -cycleSpeed, 0, UP, DOWN, LEFT, RIGHT);
 	yellowCycle = LightCycle(200, 47, YELLOW, 0, cycleSpeed, 85, 74, 72, 75);
+	greenCycle.loser = false;
+	redCycle.loser = false;
+	yellowCycle.loser = false;
 	loop();
     };
 };
