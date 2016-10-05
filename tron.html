@@ -123,7 +123,7 @@ var LightCycle = function(x, y, color, speedX, speedY, upKey, downKey, leftKey, 
 
 var greenCycle = new LightCycle(200, 300, GREEN, cycleSpeed, 0, 87, 83, 65, 68);
 var redCycle = new LightCycle(600, 300, RED, -cycleSpeed, 0, UP, DOWN, LEFT, RIGHT);
-var yellowCycle = new LightCycle(400, 200, YELLOW, 0, cycleSpeed, 85, 74, 72, 75);
+var yellowCycle = new LightCycle(400, 100, YELLOW, 0, cycleSpeed, 85, 74, 72, 75);
 
 var draw() {
     greenCycle.draw();
@@ -185,7 +185,7 @@ var draw() {
     	drawBackground();
 	greenCycle = new LightCycle(200, 300, GREEN, cycleSpeed, 0, 87, 83, 65, 68);
 	redCycle = new LightCycle(600, 300, RED, -cycleSpeed, 0, UP, DOWN, LEFT, RIGHT);
-	yellowCycle = new LightCycle(400, 200, YELLOW, 0, cycleSpeed, 85, 74, 72, 75);
+	yellowCycle = new LightCycle(400, 100, YELLOW, 0, cycleSpeed, 85, 74, 72, 75);
 	greenCycle.loser = false;
 	redCycle.loser = false;
 	yellowCycle.loser = false;
