@@ -220,9 +220,18 @@ var draw() {
         noLoop();
     }
     
-    mouseClicked = function(){
-        Program.restart();
+    //restart the game
+     mouseClicked = function(){
+    	drawBackground();
+	greenCycle = new LightCycle(200, 300, GREEN, cycleSpeed, 0, 87, 83, 65, 68);
+	redCycle = new LightCycle(600, 300, RED, -cycleSpeed, 0, UP, DOWN, LEFT, RIGHT);
+	greenCycle.loser = false;
+	redCycle.loser = false;
+	loop();
+	//greenCycle.draw();
+	//redCycle.draw();
     };
+    
 };
 
 
