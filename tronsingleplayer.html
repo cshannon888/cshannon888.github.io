@@ -174,9 +174,45 @@ var playerAI = function(LightCycle){
                 randomDirection = 0;
             }
         }
-        
-        
     }
+    
+    //randomly change direction
+    var randomMovement = floor(random(1, 100));
+    if(randomMovement === 1){
+        
+        //if the AI is going left or right
+        if(LightCycle.speedX === cycleSpeed || LightCycle.speedX === -cycleSpeed){
+            var randomMovementDirection = floor(random(1, 3));
+                
+                //goes up
+                if(randomMovementDirection === 1 && get(LightCycle.x, LightCycle.y - 5) !== RED && get(LightCycle.x, LightCycle.y - 5) !== GREEN){
+                    LightCycle.speedX = 0;
+                    LightCycle.speedY = -cycleSpeed;
+                }
+                //goes down
+                if(randomMovementDirection === 1 && get(LightCycle.x, LightCycle.y + 5) !== RED && get(LightCycle.x, LightCycle.y + 5) !== GREEN){
+                    LightCycle.speedX = 0;
+                    LightCycle.speedY = cycleSpeed;
+                }
+        }
+        
+        //if the AI is going up or down
+        if(LightCycle.speedY === cycleSpeed || LightCycle.speedY === -cycleSpeed){
+            var randomMovementDirection = floor(random(1, 3));
+                
+                //goes left
+                if(randomMovementDirection === 1 && get(LightCycle.x - 5, LightCycle.y) !== RED && get(LightCycle.x - 5, LightCycle.y) !== GREEN){
+                    LightCycle.speedX = -cycleSpeed;
+                    LightCycle.speedY = 0;
+                }
+                //goes right
+                if(randomMovementDirection === 1 && get(LightCycle.x + 5, LightCycle.y) !== RED && get(LightCycle.x + 5, LightCycle.y) !== GREEN){
+                    LightCycle.speedX = cycleSpeed;
+                    LightCycle.speedY = 0;
+                }
+        }
+    }
+    
 };
 
 var greenCycle = new LightCycle(200, 300, GREEN, cycleSpeed, 0, 87, 83, 65, 68);
