@@ -39,10 +39,10 @@ drawBackground();
 
 var keys = [];
 
-var keyPressed = function(){
+var keyPressed() {
     keys[keyCode] = true;
 };
-var keyReleased = function(){
+var keyReleased() {
     keys[keyCode] = false;
 };
     
@@ -70,17 +70,17 @@ var LightCycle = function(x, y, color, speedX, speedY, upKey, downKey, leftKey, 
         this.nextColorDetect = get(LightCycle.x + (LightCycle.speedX*3), LightCycle.y + (LightCycle.speedY*3)); 
         
         //if it reaches the edges, appears on other side of screen:
-        if(this.x > 400){
+        if(this.x > 800){
             this.x = 0;
         }
         if(this.x < 0){
-            this.x = 400;
+            this.x = 800;
         }
-        if(this.y > 400){
+        if(this.y > 600){
             this.y = 0;
         }
         if(this.y < 0){
-            this.y = 400;
+            this.y = 600;
         }
         
         //keys 65=a, 68=d, 87=w, 83=s
@@ -179,8 +179,8 @@ var playerAI = function(LightCycle){
     }
 };
 
-var greenCycle = new LightCycle(50, 200, GREEN, cycleSpeed, 0, 87, 83, 65, 68);
-var redCycle = new LightCycle(350, 200, RED, -cycleSpeed, 0);
+var greenCycle = new LightCycle(200, 300, GREEN, cycleSpeed, 0, 87, 83, 65, 68);
+var redCycle = new LightCycle(600, 300, RED, -cycleSpeed, 0);
 
 var draw() {
     greenCycle.draw();
@@ -194,7 +194,9 @@ var draw() {
         fill(255, 255, 255);
         textSize(30);
         textAlign(CENTER, CENTER);
-        text("Tie", 200, 100);
+        text("Tie", 400, 100);
+	textSize(17);
+	text("Click To Restart", 400, 130);
         noLoop();
     }
     
@@ -203,9 +205,9 @@ var draw() {
         fill(255, 255, 255);
         textSize(30);
         textAlign(CENTER, CENTER);
-        text("Green Wins", 200, 100);
+        text("Green Wins", 400, 100);
         textSize(17);
-        text("Click To Restart", 200, 130);
+        text("Click To Restart", 400, 130);
         noLoop();
     }
     
@@ -214,9 +216,9 @@ var draw() {
         fill(255, 255, 255);
         textSize(30);
         textAlign(CENTER, CENTER);
-        text("Red Wins", 200, 100);
+        text("Red Wins", 400, 100);
         textSize(17);
-        text("Click To Restart", 200, 130);
+        text("Click To Restart", 400, 130);
         noLoop();
     }
     
