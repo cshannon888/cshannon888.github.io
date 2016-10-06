@@ -182,7 +182,7 @@ var playerAI = function(LightCycle){
 var greenCycle = new LightCycle(50, 200, GREEN, cycleSpeed, 0, 87, 83, 65, 68);
 var redCycle = new LightCycle(350, 200, RED, -cycleSpeed, 0);
 
-var draw = function() {
+var draw() {
     greenCycle.draw();
     redCycle.draw();
     playerAI(redCycle);
