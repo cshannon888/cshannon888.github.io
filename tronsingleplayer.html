@@ -197,7 +197,7 @@ var playerAI = function(LightCycle){
         }
         
         //if the AI is going up or down
-        if(LightCycle.speedY === cycleSpeed || LightCycle.speedY === -cycleSpeed){
+        else if(LightCycle.speedY === cycleSpeed || LightCycle.speedY === -cycleSpeed){
             var randomMovementDirection = floor(random(1, 3));
                 
                 //goes left
