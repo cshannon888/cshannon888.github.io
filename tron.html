@@ -15,9 +15,9 @@ void setup() {
  * TRON Game by Delphi
  * Two player if mouse is on left half of screen
  * Three player if mouse is on right half
- * Green controls: WASD
- * Red controls: arrow keys
- * Yellow controls: UHJK
+ * Green controls: WASD, Shift to teleport
+ * Red controls: arrow keys, Ctrl to teleport
+ * Yellow controls: UHJK, Space to teleport
  */
 
 var DARKBLUE = color(2, 24, 77);
@@ -47,7 +47,7 @@ var keyReleased() {
     keys[keyCode] = false;
 };
     
-var LightCycle = function(x, y, color, speedX, speedY, upKey, downKey, leftKey, rightKey){
+var LightCycle = function(x, y, color, speedX, speedY, upKey, downKey, leftKey, rightKey, jumpKey, jumpCount){
     this.x = x;
     this.y = y;
     this.color = color;
@@ -57,6 +57,8 @@ var LightCycle = function(x, y, color, speedX, speedY, upKey, downKey, leftKey, 
     this.downKey = downKey;
     this.leftKey = leftKey;
     this.rightKey = rightKey;
+    this.jumpKey = jumpKey;
+    this.jumpCount = jumpCount;
     this.loser = false;
 
         
@@ -109,6 +111,13 @@ var LightCycle = function(x, y, color, speedX, speedY, upKey, downKey, leftKey, 
 		this.speedY = 0;
 	    }
         }
+	
+	//teleporting
+        if(keys[this.jumpKey] && this.jumpCount > 0){
+            this.x += this.speedX*20;
+            this.y += this.speedY*20;
+            this.jumpCount -= 1;
+        }
         
         //code for collisions
         if(this.nextColor === RED || this.nextColor === GREEN || this.nextColor === YELLOW){
@@ -120,9 +129,9 @@ var LightCycle = function(x, y, color, speedX, speedY, upKey, downKey, leftKey, 
     };
 };
 
-var greenCycle = new LightCycle(200, 300, GREEN, cycleSpeed, 0, 87, 83, 65, 68);
-var redCycle = new LightCycle(600, 300, RED, -cycleSpeed, 0, UP, DOWN, LEFT, RIGHT);
-var yellowCycle = new LightCycle(400, 97, YELLOW, 0, cycleSpeed, 85, 74, 72, 75);
+var greenCycle = new LightCycle(200, 300, GREEN, cycleSpeed, 0, 87, 83, 65, 68, 16, 1);
+var redCycle = new LightCycle(600, 300, RED, -cycleSpeed, 0, UP, DOWN, LEFT, RIGHT, 17, 1);
+var yellowCycle = new LightCycle(400, 97, YELLOW, 0, cycleSpeed, 85, 74, 72, 75, 32, 1);
 
 drawBackground();
 
@@ -186,9 +195,9 @@ var draw() {
     //restart game
     mouseClicked = function(){
     	drawBackground();
-	greenCycle = new LightCycle(200, 300, GREEN, cycleSpeed, 0, 87, 83, 65, 68);
-	redCycle = new LightCycle(600, 300, RED, -cycleSpeed, 0, UP, DOWN, LEFT, RIGHT);
-	yellowCycle = new LightCycle(400, 97, YELLOW, 0, cycleSpeed, 85, 74, 72, 75);
+	greenCycle = new LightCycle(200, 300, GREEN, cycleSpeed, 0, 87, 83, 65, 68, 16, 1);
+	redCycle = new LightCycle(600, 300, RED, -cycleSpeed, 0, UP, DOWN, LEFT, RIGHT, 17, 1);
+	yellowCycle = new LightCycle(400, 97, YELLOW, 0, cycleSpeed, 85, 74, 72, 75, 32, 1);
 	greenCycle.loser = false;
 	redCycle.loser = false;
 	yellowCycle.loser = false;
