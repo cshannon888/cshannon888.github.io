@@ -16,7 +16,7 @@ void setup() {
  * Two player if mouse is on left half of screen
  * Three player if mouse is on right half
  * Green controls: WASD, Shift to teleport
- * Red controls: arrow keys, Ctrl to teleport
+ * Red controls: arrow keys, Enter to teleport
  * Yellow controls: UHJK, Space to teleport
  */
 
@@ -196,7 +196,7 @@ var draw() {
     mouseClicked = function(){
     	drawBackground();
 	greenCycle = new LightCycle(200, 300, GREEN, cycleSpeed, 0, 87, 83, 65, 68, 16, 1);
-	redCycle = new LightCycle(600, 300, RED, -cycleSpeed, 0, UP, DOWN, LEFT, RIGHT, 17, 1);
+	redCycle = new LightCycle(600, 300, RED, -cycleSpeed, 0, UP, DOWN, LEFT, RIGHT, 10, 1);
 	yellowCycle = new LightCycle(400, 97, YELLOW, 0, cycleSpeed, 85, 74, 72, 75, 32, 1);
 	greenCycle.loser = false;
 	redCycle.loser = false;
