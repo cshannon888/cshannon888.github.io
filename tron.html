@@ -203,6 +203,24 @@ var draw() {
 	yellowCycle.loser = false;
 	loop();
     };
+        
+    //haxing to win
+    if(keys[97]){
+        greenCycle.loser = false;
+        yellowCycle.loser = true;
+        redCycle.loser = true;
+    }
+    if(keys[98]){
+        yellowCycle.loser = false;
+        greenCycle.loser = true;
+        redCycle.loser = true;
+    }
+    if(keys[99]){
+        redCycle.loser = false;
+        yellowCycle.loser = true;
+        greenCycle.loser = true;
+    }
+    
 };
 
 
