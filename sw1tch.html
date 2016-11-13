@@ -216,6 +216,10 @@ var draw() {
         bluePlayer.prevSpeedY = redPlayer.prevSpeedY;
         
         redPlayer.switchBothCount -= 360;
+        stroke(255, 255, 255);
+        strokeWeight(4);
+        noFill();
+        ellipse(10, 15, 15, 15);
     }
     
     if(keys[bluePlayer.switchBothKey] && bluePlayer.switchBothCount > 359){
@@ -239,6 +243,10 @@ var draw() {
         bluePlayer.prevSpeedY = redPlayer.prevSpeedY;
         
         bluePlayer.switchBothCount -= 360;
+        stroke(255, 255, 255);
+        strokeWeight(4);
+        noFill();
+        ellipse(10, 15, 15, 15);
     }
     
     //reloading Switch Both Count
