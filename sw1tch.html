@@ -293,6 +293,8 @@ var draw() {
         redPlayer = new Player(canvasWidth/5, canvasHeight/2, RED, playerSpeed, 0, 87, 83, 65, 68, 69, 81, 1, 1, canvasWidth/5, canvasHeight/2, -playerSpeed, 0);
 
         bluePlayer = new Player(canvasWidth*4/5, canvasHeight/2, BLUE, -playerSpeed, 0, UP, DOWN, LEFT, RIGHT, 16, 10, 1, 1, canvasWidth*4/5, canvasHeight/2, playerSpeed, 0);
+	redPlayer.switchBothCount = 1;
+        bluePlayer.switchBothCount = 1;
         redPlayer.loser = false;
         bluePlayer.loser = false;
         loop();
