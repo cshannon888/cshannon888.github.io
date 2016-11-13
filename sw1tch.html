@@ -11,3 +11,289 @@ void setup() {
   size(800, 600); 
 }
 
+
+
+
+var canvasWidth = 800;
+var canvasHeight = 600;
+var RED = color(255, 0, 0);
+var BLUE = color(0, 255, 255);
+var playerSpeed = 2;
+
+var drawBackground = function(){
+    background(255, 255, 255);
+    stroke(160, 170, 176);
+    fill(255, 255, 255);
+    for(var i = -195; i < 167; i+=60){
+        for(var j = -183; j < 197; j+=35){
+            beginShape();
+            vertex(i+210, j+217);
+            vertex(i+190, j+217);
+            vertex(i+180, j+200);
+            vertex(i+190, j+183);
+            vertex(i+210, j+183);
+            vertex(i+220, j+200);
+            endShape(CLOSE);  
+        }
+  
+    }
+    for(var i = -225; i < 198; i+=60){
+        for(var j = -165; j < 193; j+=35){
+            beginShape();
+            vertex(i+210, j+217);
+            vertex(i+190, j+217);
+            vertex(i+180, j+200);
+            vertex(i+190, j+183);
+            vertex(i+210, j+183);
+            vertex(i+220, j+200);
+            endShape(CLOSE);  
+        }
+  
+    }
+};
+
+drawBackground();
+
+var keys = [];
+
+var keyPressed = function(){
+    keys[keyCode] = true;
+};
+var keyReleased = function(){
+    keys[keyCode] = false;
+};
+
+var Player = function(x, y, color, speedX, speedY, upKey, downKey, leftKey, rightKey, switchSelfKey, switchBothKey, switchSelfCount, switchBothCount, prevX, prevY, prevSpeedX, prevSpeedY){
+    this.x = x;
+    this.y = y;
+    this.color = color;
+    this.speedX = speedX;
+    this.speedY = speedY;
+    this.upKey = upKey;
+    this.downKey = downKey;
+    this.leftKey = leftKey;
+    this.rightKey = rightKey;
+    this.switchSelfKey = switchSelfKey;
+    this.switchBothKey = switchBothKey;
+    this.switchSelfCount = switchSelfCount;
+    this.switchBothCount = switchBothCount;
+    this.prevX = prevX;
+    this.prevY = prevY;
+    this.prevSpeedX = prevSpeedX;
+    this.prevSpeedY = prevSpeedY;
+    this.loser = false;
+    
+    this.draw = function() {
+        
+        fill(this.color);
+        noStroke();
+        ellipse(this.x, this.y, 4, 4);
+        
+        this.x += this.speedX;
+        this.y += this.speedY;
+        
+        this.currentX = this.x;
+        this.currentY = this.y;
+        this.currentSpeedX = this.speedX;
+        this.currentSpeedY = this.speedY;
+        
+        this.nextColor = get(this.x + this.speedX*1, this.y + this.speedY*1);
+        
+        //if player reaches edge of canvas, appears on other side
+        if(this.x < 0){
+            this.x = canvasWidth;
+        }
+        if(this.x > canvasWidth){
+            this.x = 0;
+        }
+        if(this.y < 0){
+            this.y = canvasHeight;
+        }
+        if(this.y > canvasHeight){
+            this.y = 0;
+        }
+        
+        //keys 65=a, 68=d, 87=w, 83=s, switch = shift
+        //85 = u, 72 = h, 74 = j, 75 = k, switch = space
+        
+        //diagonal movement
+        if(keys[this.upKey] && keys[this.rightKey]){
+            this.speedX = 0.7*playerSpeed;
+            this.speedY = -0.7*playerSpeed;
+        }
+        else if(keys[this.upKey] && keys[this.leftKey]){
+            this.speedX = -0.7*playerSpeed;
+            this.speedY = -0.7*playerSpeed;
+        }
+        else if(keys[this.downKey] && keys[this.rightKey]){
+            this.speedX = 0.7*playerSpeed;
+            this.speedY = 0.7*playerSpeed;
+        }
+        else if(keys[this.downKey] && keys[this.leftKey]){
+            this.speedX = -0.7*playerSpeed;
+            this.speedY = 0.7*playerSpeed;
+        }
+        
+        //left, right, etc movement
+        
+        else if(keys[this.upKey] && this.speedY !== playerSpeed){
+            this.speedX = 0;
+            this.speedY = -playerSpeed;
+        }
+        else if(keys[this.downKey] && this.speedY !== -playerSpeed){
+            this.speedX = 0;
+            this.speedY = playerSpeed;
+        }
+        else if(keys[this.leftKey] && this.speedX !== playerSpeed){
+            this.speedX = -playerSpeed;
+            this.speedY = 0;
+        }
+        else if(keys[this.rightKey] && this.speedX !== -playerSpeed){
+            this.speedX = playerSpeed;
+            this.speedY = 0;
+        }
+        
+        //switch self --> player goes to other end of own line
+        if(keys[this.switchSelfKey] && this.switchSelfCount > 0){
+            
+            this.x = this.prevX;
+            this.y = this.prevY;
+            this.prevX = this.currentX;
+            this.prevY = this.currentY;
+            
+            this.speedX = this.prevSpeedX;
+            this.speedY = this.prevSpeedY;
+            this.prevSpeedX = this.currentSpeedX;
+            this.prevSpeedY = this.currentSpeedY;
+            
+            this.switchSelfCount -= 10;
+        }
+        
+        if(this.switchSelfCount < 1){
+            this.switchSelfCount += 1;
+        }
+        
+        
+        //code for collisions
+        if(this.nextColor === RED || this.nextColor === BLUE){
+            this.speedX = 0;
+            this.speedY = 0;
+            this.loser = true;
+        }
+        
+    }; //end this.draw
+    
+};
+
+var redPlayer = new Player(canvasWidth/5, canvasHeight/2, RED, playerSpeed, 0, 87, 83, 65, 68, 69, 81, 1, 1, canvasWidth/5, canvasHeight/2, -playerSpeed, 0);
+
+var bluePlayer = new Player(canvasWidth*4/5, canvasHeight/2, BLUE, -playerSpeed, 0, UP, DOWN, LEFT, RIGHT, 16, 10, 1, 1, canvasWidth*4/5, canvasHeight/2, playerSpeed, 0);
+
+var draw = function() {
+    
+    redPlayer.draw();
+    bluePlayer.draw();
+    
+    //switch both --> players completely switch positions
+    if(keys[redPlayer.switchBothKey] && redPlayer.switchBothCount > 0){
+        
+        redPlayer.x = bluePlayer.x;
+        redPlayer.y = bluePlayer.y;
+        redPlayer.speedX = bluePlayer.speedX;
+        redPlayer.speedY = bluePlayer.speedY;
+        redPlayer.prevX = bluePlayer.prevX;
+        redPlayer.prevY = bluePlayer.prevY;
+        redPlayer.prevSpeedX = bluePlayer.prevSpeedX;
+        redPlayer.prevSpeedY = bluePlayer.prevSpeedY;
+        
+        bluePlayer.x = redPlayer.currentX;
+        bluePlayer.y = redPlayer.currentY;
+        bluePlayer.speedX = redPlayer.currentSpeedX;
+        bluePlayer.speedY = redPlayer.currentSpeedY;
+        bluePlayer.prevX = redPlayer.prevX;
+        bluePlayer.prevY = redPlayer.prevY;
+        bluePlayer.prevSpeedX = redPlayer.prevSpeedX;
+        bluePlayer.prevSpeedY = redPlayer.prevSpeedY;
+        
+        redPlayer.switchBothCount -= 1;
+    }
+    
+    if(keys[bluePlayer.switchBothKey] && bluePlayer.switchBothCount > 0){
+        
+        redPlayer.x = bluePlayer.x;
+        redPlayer.y = bluePlayer.y;
+        redPlayer.speedX = bluePlayer.speedX;
+        redPlayer.speedY = bluePlayer.speedY;
+        redPlayer.prevX = bluePlayer.prevX;
+        redPlayer.prevY = bluePlayer.prevY;
+        redPlayer.prevSpeedX = bluePlayer.prevSpeedX;
+        redPlayer.prevSpeedY = bluePlayer.prevSpeedY;
+        
+        bluePlayer.x = redPlayer.currentX;
+        bluePlayer.y = redPlayer.currentY;
+        bluePlayer.speedX = redPlayer.currentSpeedX;
+        bluePlayer.speedY = redPlayer.currentSpeedY;
+        bluePlayer.prevX = redPlayer.prevX;
+        bluePlayer.prevY = redPlayer.prevY;
+        bluePlayer.prevSpeedX = redPlayer.prevSpeedX;
+        bluePlayer.prevSpeedY = redPlayer.prevSpeedY;
+        
+        bluePlayer.switchBothCount -= 1;
+    }
+    
+    //end the game
+    if(redPlayer.loser === true && bluePlayer.loser === true){
+        noLoop();
+        fill(0, 0, 0);
+        var f = createFont("monospace");
+        textFont(f);
+        textAlign(CENTER, CENTER);
+        textSize(30);
+        text("Tie", canvasWidth/2, canvasHeight/4); 
+    }
+    
+    else if(bluePlayer.loser === true){
+        fill(0, 0, 0);
+        var f = createFont("monospace");
+        textFont(f);
+        textAlign(CENTER, CENTER);
+        textSize(30);
+        text("Red Wins", canvasWidth/2, canvasHeight/4); 
+        noLoop();
+    }
+    
+    else if(redPlayer.loser === true){
+        fill(0, 0, 0);
+        var f = createFont("monospace");
+        textFont(f);
+        textAlign(CENTER, CENTER);
+        textSize(30);
+        text("Blue Wins", canvasWidth/2, canvasHeight/4); 
+        noLoop();
+    }
+    
+    //restart game
+    mouseClicked = function(){
+        
+        drawBackground();
+        redPlayer = new Player(canvasWidth/5, canvasHeight/2, RED, playerSpeed, 0, 87, 83, 65, 68, 69, 81, 1, 1, canvasWidth/5, canvasHeight/2, -playerSpeed, 0);
+
+        bluePlayer = new Player(canvasWidth*4/5, canvasHeight/2, BLUE, -playerSpeed, 0, UP, DOWN, LEFT, RIGHT, 16, 10, 1, 1, canvasWidth*4/5, canvasHeight/2, playerSpeed, 0);
+        redPlayer.loser = false;
+        bluePlayer.loser = false;
+        loop();
+    };
+
+    
+};
+
+
+
+</script>
+
+	<head>
+    <body>
+        <canvas id="targetcanvas"
+	width="800" height="600" "></canvas>
+    </body>
+</html>
