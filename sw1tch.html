@@ -243,10 +243,10 @@ var draw() {
     
     //reloading Switch Both Count
     if(redPlayer.switchBothCount < 360){
-        redPlayer.switchBothCount ++;
+        redPlayer.switchBothCount +=0.001;
     }
     if(bluePlayer.switchBothCount < 360){
-        bluePlayer.switchBothCount ++;
+        bluePlayer.switchBothCount +=0.001;
     }
     strokeWeight(2);
     noFill();
