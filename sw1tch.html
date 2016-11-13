@@ -252,9 +252,9 @@ var draw() {
     noFill();
     angleMode = "degrees";
     stroke(240, 56, 56);
-    arc(10, 15, 15, 15, 0, redPlayer.switchBothCount);
+    arc(10, 15, 15, 15, 0, redPlayer.switchBothCount*6.28/360);
     stroke(62, 240, 240);
-    arc(30, 15, 15, 15, 0, redPlayer.switchBothCount);
+    arc(30, 15, 15, 15, 0, redPlayer.switchBothCount*6.28/360);
     
     //end the game
     if(redPlayer.loser === true && bluePlayer.loser === true){
