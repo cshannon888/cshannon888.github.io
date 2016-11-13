@@ -243,13 +243,14 @@ var draw() {
     
     //reloading Switch Both Count
     if(redPlayer.switchBothCount < 360){
-        redPlayer.switchBothCount +=0.001;
+        redPlayer.switchBothCount +=1;
     }
     if(bluePlayer.switchBothCount < 360){
-        bluePlayer.switchBothCount +=0.001;
+        bluePlayer.switchBothCount +=1;
     }
     strokeWeight(2);
     noFill();
+    angleMode = "degrees";
     stroke(240, 56, 56);
     arc(10, 15, 15, 15, 0, redPlayer.switchBothCount);
     stroke(62, 240, 240);
