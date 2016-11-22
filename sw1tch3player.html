@@ -194,7 +194,7 @@ var redPlayer = new Player(canvasWidth/5, canvasHeight/2, RED, playerSpeed, 0, 8
 
 var bluePlayer = new Player(canvasWidth*4/5, canvasHeight/2, BLUE, -playerSpeed, 0, UP, DOWN, LEFT, RIGHT, 16, 10, 1, 1, canvasWidth*4/5, canvasHeight/2, playerSpeed, 0);
 
-var blackPlayer = new Player(canvasWidth/2, canvasHeight*1/8, BLACK, 0, playerSpeed, 85, 74, 72, 75, 73, 89, 1, 1, canvasWidth/2, canvasHeight*1/8, 0, playerSpeed);
+var blackPlayer = new Player(canvasWidth/2, canvasHeight*1/8, BLACK, 0, playerSpeed, 85, 74, 72, 75, 73, 89, 1, 1, canvasWidth/2, canvasHeight*1/8, 0, -playerSpeed);
 
 var draw(){
     
@@ -550,7 +550,7 @@ var draw(){
 
         bluePlayer = new Player(canvasWidth*4/5, canvasHeight/2, BLUE, -playerSpeed, 0, UP, DOWN, LEFT, RIGHT, 16, 10, 1, 1, canvasWidth*4/5, canvasHeight/2, playerSpeed, 0);
         
-        blackPlayer = new Player(canvasWidth/2, canvasHeight*1/8, BLACK, 0, playerSpeed, 85, 74, 72, 75, 73, 89, 1, 1, canvasWidth/2, canvasHeight*1/8, 0, playerSpeed);
+        blackPlayer = new Player(canvasWidth/2, canvasHeight*1/8, BLACK, 0, playerSpeed, 85, 74, 72, 75, 73, 89, 1, 1, canvasWidth/2, canvasHeight*1/8, 0, -playerSpeed);
         
         redPlayer.switchBothCount = 1;
         bluePlayer.switchBothCount = 1;
