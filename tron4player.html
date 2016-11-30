@@ -1,0 +1,234 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+<!--
+        <script src="processing.js"></script>
+-->
+	<script src="https://github.com/downloads/processing-js/processing-js/processing-1.4.1.min.js"></script>
+      
+      <script type="text/processing" data-processing-target="targetcanvas">
+void setup() { 
+  size(800, 600); 
+} 
+
+/**
+ * TRON Game by Delphi
+ * Two player if mouse is on left half of screen
+ * Three player if mouse is on right half
+ * Green controls: WASD, Shift to teleport
+ * Red controls: arrow keys, Enter to teleport
+ * Yellow controls: UHJK, Space to teleport
+ * Pink: Home, Delete, End, PageDown. Backspace to teleport
+ */
+
+var DARKBLUE = color(2, 24, 77);
+var LIGHTBLUE = color(50, 179, 179);
+var RED = color(255, 0, 0);
+var GREEN = color(0, 255, 0);
+var YELLOW = color(247, 255, 0);
+var PINK = color(198, 112, 255);
+var cycleSpeed = 2;
+
+var drawBackground = function(){
+    background(DARKBLUE);
+    stroke(LIGHTBLUE);
+    for(var i = 0; i < 400; i+=20){
+        line(i, 0, i, 400);
+        line(0, i, 400, i); 
+    }
+};
+
+
+drawBackground();
+
+var keys = [];
+
+var keyPressed = function(){
+    keys[keyCode] = true;
+};
+var keyReleased = function(){
+    keys[keyCode] = false;
+};
+    
+var LightCycle = function(x, y, color, speedX, speedY, upKey, downKey, leftKey, rightKey, jumpKey, jumpCount){
+    this.x = x;
+    this.y = y;
+    this.color = color;
+    this.speedX = speedX;
+    this.speedY = speedY;
+    this.upKey = upKey;
+    this.downKey = downKey;
+    this.leftKey = leftKey;
+    this.rightKey = rightKey;
+    this.jumpKey = jumpKey;
+    this.jumpCount = jumpCount;
+    this.loser = false;
+
+        
+    this.draw = function() {
+        noStroke();
+        fill(this.color);
+        ellipse(this.x, this.y, 5, 5);
+        this.x += this.speedX;
+        this.y += this.speedY;
+        
+        this.nextColor = get(this.x + this.speedX, this.y + this.speedY);
+        this.nextColor2 = get(this.x + this.speedX*0.7, this.y + this.speedY*0.7);
+        stroke(255, 255, 255);
+        
+        //if it reaches the edges, appears on other side of screen:
+        if(this.x > 400){
+            this.x = 0;
+        }
+        if(this.x < 0){
+            this.x = 400;
+        }
+        if(this.y > 400){
+            this.y = 0;
+        }
+        if(this.y < 0){
+            this.y = 400;
+        }
+        
+        //keys 65=a, 68=d, 87=w, 83=s, teleport = shift
+        //85 = u, 72 = h, 74 = j, 75 = k, teleport = space
+        if(keys[this.upKey] && this.speedY !== cycleSpeed){
+            this.speedX = 0;
+            this.speedY = -cycleSpeed;
+        }
+        if(keys[this.downKey] && this.speedY !== -cycleSpeed){
+            this.speedX = 0;
+            this.speedY = cycleSpeed;
+        }
+        if(keys[this.leftKey] && this.speedX !== cycleSpeed){
+            this.speedX = -cycleSpeed;
+            this.speedY = 0;
+        }
+        if(keys[this.rightKey] && this.speedX !== -cycleSpeed){
+            this.speedX = cycleSpeed;
+            this.speedY = 0;
+        }
+        
+        //teleporting
+        if(keys[this.jumpKey] && this.jumpCount > 0){
+            this.x += this.speedX*20;
+            this.y += this.speedY*20;
+            this.jumpCount -= 1;
+        }
+        
+        //code for collisions
+        if(this.nextColor === RED || this.nextColor === GREEN || this.nextColor === YELLOW || this.nextColor === PINK){
+            this.speedX = 0;
+            this.speedY = 0;
+            this.loser = true;
+        }
+        
+    };
+};
+
+var greenCycle = new LightCycle(50, 200, GREEN, cycleSpeed, 0, 87, 83, 65, 68, 16, 1);
+var redCycle = new LightCycle(350, 200, RED, -cycleSpeed, 0, UP, DOWN, LEFT, RIGHT, 10, 1);
+var yellowCycle = new LightCycle(200, 47, YELLOW, 0, cycleSpeed, 85, 74, 72, 75, 32, 1);
+var pinkCycle = new LightCycle(200, 353, PINK, 0, -cycleSpeed, 36, 35, 127, 34, 8, 1);
+
+var draw = function() {
+    greenCycle.draw();
+    redCycle.draw();
+    yellowCycle.draw();
+    pinkCycle.draw();
+    
+    //end the game
+    
+    //ties
+    if(dist(greenCycle.x, greenCycle.y, redCycle.x, redCycle.y) < 2){
+        greenCycle.loser = true;
+        redCycle.loser = true;
+    }
+    if(dist(greenCycle.x, greenCycle.y, yellowCycle.x, yellowCycle.y) < 2){
+        greenCycle.loser = true;
+        yellowCycle.loser = true;
+    }
+    if(dist(yellowCycle.x, yellowCycle.y, redCycle.x, redCycle.y) < 2){
+        yellowCycle.loser = true;
+        redCycle.loser = true;
+    }
+    if(dist(pinkCycle.x, pinkCycle.y, greenCycle.x, greenCycle.y) < 2){
+        pinkCycle.loser = true;
+        greenCycle.loser = true;
+    }
+    if(dist(pinkCycle.x, pinkCycle.y, yellowCycle.x, yellowCycle.y) < 2){
+        pinkCycle.loser = true;
+        yellowCycle.loser = true;
+    }
+    if(dist(pinkCycle.x, pinkCycle.y, redCycle.x, redCycle.y) < 2){
+        pinkCycle.loser = true;
+        redCycle.loser = true;
+    }
+    //tie
+    if(greenCycle.loser === true && redCycle.loser === true && yellowCycle.loser === true && pinkCycle.loser === true){
+        fill(255, 255, 255);
+        textSize(30);
+        textAlign(CENTER, CENTER);
+        text("Tie", 200, 100);
+        noLoop();
+    }
+    
+    //Yellow Wins
+    else if(greenCycle.loser===true && redCycle.loser===true && pinkCycle.loser===true){
+        fill(255, 255, 255);
+        textSize(30);
+        textAlign(CENTER, CENTER);
+        text("Yellow Wins", 200, 100);
+        textSize(17);
+        text("Click To Restart", 200, 130);
+        noLoop();
+    }
+    
+    //Green Wins
+    else if(redCycle.loser===true && yellowCycle.loser===true && pinkCycle.loser===true){
+        fill(255, 255, 255);
+        textSize(30);
+        textAlign(CENTER, CENTER);
+        text("Green Wins", 200, 100);
+        textSize(17);
+        text("Click To Restart", 200, 130);
+        noLoop();
+    }
+    
+    //Red Wins
+    else if(greenCycle.loser===true && yellowCycle.loser===true && pinkCycle.loser===true){
+        fill(255, 255, 255);
+        textSize(30);
+        textAlign(CENTER, CENTER);
+        text("Red Wins", 200, 100);
+        textSize(17);
+        text("Click To Restart", 200, 130);
+        noLoop();
+    }
+    
+    //Pink Wins
+    else if(greenCycle.loser===true && yellowCycle.loser===true && redCycle.loser===true){
+        fill(255, 255, 255);
+        textSize(30);
+        textAlign(CENTER, CENTER);
+        text("Pink Wins", 200, 100);
+        textSize(17);
+        text("Click To Restart", 200, 130);
+        noLoop();
+    }
+    
+    mouseClicked = function(){
+        Program.restart();
+    };
+    
+};
+
+
+</script>
+
+	<head>
+    <body>
+        <canvas id="targetcanvas"
+	width="800" height="600" "></canvas>
+    </body>
+</html>
