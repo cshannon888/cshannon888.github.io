@@ -32,9 +32,9 @@ var cycleSpeed = 2;
 var drawBackground = function(){
     background(DARKBLUE);
     stroke(LIGHTBLUE);
-    for(var i = 0; i < 400; i+=20){
-        line(i, 0, i, 400);
-        line(0, i, 400, i); 
+    for(var i = 0; i < 800; i+=20){
+        line(i, 0, i, 600);
+        line(0, i, 800, i); 
     }
 };
 
@@ -43,10 +43,10 @@ drawBackground();
 
 var keys = [];
 
-var keyPressed = function(){
+var keyPressed(){
     keys[keyCode] = true;
 };
-var keyReleased = function(){
+var keyReleased(){
     keys[keyCode] = false;
 };
     
@@ -77,17 +77,17 @@ var LightCycle = function(x, y, color, speedX, speedY, upKey, downKey, leftKey, 
         stroke(255, 255, 255);
         
         //if it reaches the edges, appears on other side of screen:
-        if(this.x > 400){
+        if(this.x > 800){
             this.x = 0;
         }
         if(this.x < 0){
-            this.x = 400;
+            this.x = 800;
         }
-        if(this.y > 400){
+        if(this.y > 600){
             this.y = 0;
         }
         if(this.y < 0){
-            this.y = 400;
+            this.y = 600;
         }
         
         //keys 65=a, 68=d, 87=w, 83=s, teleport = shift
@@ -126,12 +126,12 @@ var LightCycle = function(x, y, color, speedX, speedY, upKey, downKey, leftKey, 
     };
 };
 
-var greenCycle = new LightCycle(50, 200, GREEN, cycleSpeed, 0, 87, 83, 65, 68, 16, 1);
-var redCycle = new LightCycle(350, 200, RED, -cycleSpeed, 0, UP, DOWN, LEFT, RIGHT, 10, 1);
-var yellowCycle = new LightCycle(200, 47, YELLOW, 0, cycleSpeed, 85, 74, 72, 75, 32, 1);
-var pinkCycle = new LightCycle(200, 353, PINK, 0, -cycleSpeed, 36, 35, 127, 34, 8, 1);
+var greenCycle = new LightCycle(200, 300, GREEN, cycleSpeed, 0, 87, 83, 65, 68, 16, 1);
+var redCycle = new LightCycle(600, 300, RED, -cycleSpeed, 0, UP, DOWN, LEFT, RIGHT, 17, 1);
+var yellowCycle = new LightCycle(400, 97, YELLOW, 0, cycleSpeed, 85, 74, 72, 75, 32, 1);
+var pinkCycle = new LightCycle(400, 503, PINK, 0, -cycleSpeed, 36, 35, 127, 34, 8, 1);
 
-var draw = function() {
+var draw() {
     greenCycle.draw();
     redCycle.draw();
     yellowCycle.draw();
@@ -169,7 +169,7 @@ var draw = function() {
         fill(255, 255, 255);
         textSize(30);
         textAlign(CENTER, CENTER);
-        text("Tie", 200, 100);
+        text("Tie", 400, 100);
         noLoop();
     }
     
@@ -178,9 +178,9 @@ var draw = function() {
         fill(255, 255, 255);
         textSize(30);
         textAlign(CENTER, CENTER);
-        text("Yellow Wins", 200, 100);
+        text("Yellow Wins", 400, 100);
         textSize(17);
-        text("Click To Restart", 200, 130);
+        text("Click To Restart", 400, 130);
         noLoop();
     }
     
@@ -189,9 +189,9 @@ var draw = function() {
         fill(255, 255, 255);
         textSize(30);
         textAlign(CENTER, CENTER);
-        text("Green Wins", 200, 100);
+        text("Green Wins", 400, 100);
         textSize(17);
-        text("Click To Restart", 200, 130);
+        text("Click To Restart", 400, 130);
         noLoop();
     }
     
@@ -200,9 +200,9 @@ var draw = function() {
         fill(255, 255, 255);
         textSize(30);
         textAlign(CENTER, CENTER);
-        text("Red Wins", 200, 100);
+        text("Red Wins", 400, 100);
         textSize(17);
-        text("Click To Restart", 200, 130);
+        text("Click To Restart", 400, 130);
         noLoop();
     }
     
@@ -211,14 +211,23 @@ var draw = function() {
         fill(255, 255, 255);
         textSize(30);
         textAlign(CENTER, CENTER);
-        text("Pink Wins", 200, 100);
+        text("Pink Wins", 400, 100);
         textSize(17);
-        text("Click To Restart", 200, 130);
+        text("Click To Restart", 400, 130);
         noLoop();
     }
     
     mouseClicked = function(){
-        Program.restart();
+    	drawBackground();
+	greenCycle = new LightCycle(200, 300, GREEN, cycleSpeed, 0, 87, 83, 65, 68, 16, 1);
+	redCycle = new LightCycle(600, 300, RED, -cycleSpeed, 0, UP, DOWN, LEFT, RIGHT, 10, 1);
+	yellowCycle = new LightCycle(400, 97, YELLOW, 0, cycleSpeed, 85, 74, 72, 75, 32, 1);
+	pinkCycle = new LightCycle(400, 503, PINK, 0, -cycleSpeed, 36, 35, 127, 34, 8, 1);
+	greenCycle.loser = false;
+	redCycle.loser = false;
+	yellowCycle.loser = false;
+	pinkCycle.loser = false;
+	loop();
     };
     
 };
