@@ -148,13 +148,18 @@ var draw() {
     
     //end the game
     
-    //tie
+    //ties
     if(dist(greenCycle.x, greenCycle.y, redCycle.x, redCycle.y) < 2){
-        fill(255, 255, 255);
-        textSize(30);
-        textAlign(CENTER, CENTER);
-        text("Tie", 200, 100);
-        noLoop();
+        greenCycle.loser = true;
+        redCycle.loser = true;
+    }
+    if(dist(greenCycle.x, greenCycle.y, yellowCycle.x, yellowCycle.y) < 2){
+        greenCycle.loser = true;
+        yellowCycle.loser = true;
+    }
+    if(dist(yellowCycle.x, yellowCycle.y, redCycle.x, redCycle.y) < 2){
+        yellowCycle.loser = true;
+        redCycle.loser = true;
     }
     //tie
     if(greenCycle.loser === true && redCycle.loser === true && yellowCycle.loser === true){
