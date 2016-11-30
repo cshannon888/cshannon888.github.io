@@ -149,6 +149,14 @@ var draw() {
     //end the game
     
     //tie
+    if(dist(greenCycle.x, greenCycle.y, redCycle.x, redCycle.y) < 2){
+        fill(255, 255, 255);
+        textSize(30);
+        textAlign(CENTER, CENTER);
+        text("Tie", 200, 100);
+        noLoop();
+    }
+    //tie
     if(greenCycle.loser === true && redCycle.loser === true && yellowCycle.loser === true){
         fill(255, 255, 255);
         textSize(30);
