@@ -1,3 +1,16 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+<!--
+        <script src="processing.js"></script>
+-->
+	<script src="https://github.com/downloads/processing-js/processing-js/processing-1.4.1.min.js"></script>
+      
+      <script type="text/processing" data-processing-target="targetcanvas">
+void setup() { 
+  size(800, 800); 
+} 
+
 var numSlits = 2;
 var wavelength = 0.000500;
 
@@ -143,3 +156,13 @@ var draw = function() {
     text("Wavelength: " + wavelength*1000000 + "nm", 10, 40);
 
 };
+
+
+</script>
+
+	<head>
+    <body>
+        <canvas id="targetcanvas"
+	width="800" height="800" "></canvas>
+    </body>
+</html>
