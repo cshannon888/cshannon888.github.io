@@ -50,7 +50,7 @@ var draw() {
         
 
     
-    mousePressed = function(){
+    if(mousePressed == true){
         
         if(firstMousePress === 0){
             yMin = mouseY;
@@ -68,7 +68,7 @@ var draw() {
         }
         fill(255, 0, 0);
         //println(yMin);
-    };
+    }
         
     beginShape();
     
@@ -102,9 +102,9 @@ var draw() {
     //Drawing Vectors
     
     
-    mousePressed = function(){
+    if(mousePressed == true){
     vectorY = mouseY;
-    };
+    }
     
     //var lastY = y;
     
@@ -150,11 +150,11 @@ var draw() {
     fill(255, 0, 0);
     noStroke();
     ellipse(slitSlider*10 + 170, 20, 10, 10);
-    mousePressed = function(){
+    if(mousePressed == true){
 	    if(mouseY < 50 && mouseX > 170 && mouseX < 370){
 		slitSlider = (mouseX-170)/10;
 		numSlits = round(slitSlider/2);
-    };
+    }
     
     //Text on screen
     fill(0, 0, 0);
