@@ -144,7 +144,7 @@ var draw() {
     fill(255, 0, 0);
     noStroke();
     ellipse(slitSlider*10 + 170, 20, 10, 10);
-    if(mousePressed == true && mouseY < 50 && mouseX > 170 && mouseX < 370) {
+    if(mousePressed == true && mouseY < 50 && mouseX > 170 && mouseX < 371) {
         slitSlider = (mouseX-170)/10;
         numSlits = round(slitSlider/2);
     }
