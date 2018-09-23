@@ -102,7 +102,7 @@ var draw() {
     
     //var lastY = y;
     
-    theta = atan((vectorY-200)/length);
+    theta = atan((vectorY-400)/length)/2;
     phi = 2*pi*d*sin(theta)/wavelength;
         
     var vecX1 = 100;
@@ -118,8 +118,8 @@ var draw() {
         
         stroke(0, 0, 0);
         
-        vecX2 = vecX1 + cos(phi/2)*20;
-        vecY2 = vecY1 + sin(phi/2)*20;
+        vecX2 = vecX1 + cos(phi)*20;
+        vecY2 = vecY1 + sin(phi)*20;
         
         
         line(vecX1, vecY1, vecX2, vecY2);
