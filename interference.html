@@ -47,18 +47,18 @@ var draw() {
     if (mousePressed == true) {
         
         if(firstMousePress === 0){
-            yMin = mouseY;
-            yMax = mouseY;
+            yMin = mouseY/2;
+            yMax = mouseY/2;
             firstMousePress = 1;
         }
         
         
         if(mouseY < yMin && mouseY > 50){
-            yMin = mouseY;
+            yMin = mouseY/2;
         }
         
         if(mouseY > yMax){
-            yMax = mouseY;
+            yMax = mouseY/2;
         }
         fill(255, 0, 0);
         //println(yMin);
@@ -144,7 +144,7 @@ var draw() {
     fill(255, 0, 0);
     noStroke();
     ellipse(slitSlider*10 + 170, 20, 10, 10);
-    if(mousePressed == true && mouseY < 50 && mouseX > 170 && mouseX < 371) {
+    if(mousePressed == true && mouseY < 50 && mouseX > 170 && mouseX < 370) {
         slitSlider = (mouseX-170)/10;
         numSlits = round(slitSlider/2);
     }
