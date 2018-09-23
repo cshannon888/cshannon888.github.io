@@ -21,12 +21,12 @@ var theta = 0;
 var phi = 2*pi*d*sin(theta)/wavelength;
 var intensity = (sin(numSlits*theta/2)/sin(theta/2))^2;
 
-var yMax = 200;
-var yMin = 200;
+var yMax = 400;
+var yMin = 400;
 
 var firstMousePress = 0;
 
-var vectorY = 200;
+var vectorY = 400;
 
 var slitSlider = 2;
 
@@ -75,18 +75,18 @@ var draw() {
         noFill();
         
         //divide by zero error
-        if(y===200){
-            y = 200.0001;
+        if(y===400){
+            y = 400.0001;
         }
         
-        theta = atan((y-200)/length);
+        theta = atan((y-400)/length);
         phi = 2*pi*d*sin(theta)/wavelength;
         intensity = pow(sin(numSlits*phi/2)/(sin(phi/2)), 2);
-        curveVertex(300-intensity*3, y);
+        curveVertex(500-intensity*3, y);
         
         //reset div by zero error
-        if(y===200.0001){
-            y = 200;
+        if(y===400.0001){
+            y = 400;
         }
         
 
@@ -144,7 +144,7 @@ var draw() {
     fill(255, 0, 0);
     noStroke();
     ellipse(slitSlider*10 + 170, 20, 10, 10);
-    if(mousePressed == true && mouseY < 50 && mouseX > 170 && mouseX < 370) {
+    if(mousePressed == true && mouseY < 50 && mouseX > 170 && mouseX < 270) {
         slitSlider = (mouseX-170)/10;
         numSlits = round(slitSlider/2);
     }
@@ -155,11 +155,6 @@ var draw() {
     text("Number of Slits: " + numSlits,10, 20);
     text("Wavelength: " + wavelength*1000000 + "nm", 10, 40);
     
-    if (mousePressed == true) {
-
-    	text("Wavelength: " + wavelength*1000000 + "nm", 50, 80);
-    
-    }
 
 };
 
