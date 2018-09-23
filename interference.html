@@ -82,7 +82,7 @@ var draw() {
         theta = atan((y-400)/length);
         phi = 2*pi*d*sin(theta)/wavelength;
         intensity = pow(sin(numSlits*phi/2)/(sin(phi/2)), 2);
-        curveVertex(500-intensity*3, y);
+        curveVertex(600-intensity*4, y*2);
         
         //reset div by zero error
         if(y===400.0001){
@@ -144,7 +144,7 @@ var draw() {
     fill(255, 0, 0);
     noStroke();
     ellipse(slitSlider*10 + 170, 20, 10, 10);
-    if(mousePressed == true && mouseY < 50 && mouseX > 170 && mouseX < 270) {
+    if(mousePressed == true && mouseY < 50 && mouseX > 170 && mouseX < 370) {
         slitSlider = (mouseX-170)/10;
         numSlits = round(slitSlider/2);
     }
