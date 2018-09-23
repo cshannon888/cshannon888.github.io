@@ -37,10 +37,6 @@ noFill();
 strokeWeight(2);
 
 
-textSize(30);
-
-text("Test", 50, 50);
-
 var draw() {
     background(255, 255, 255);
     
@@ -48,7 +44,7 @@ var draw() {
         
 
     
-    //if(mousePressed){
+    //if(mouseIsPressed){
         
         if(firstMousePress === 0){
             yMin = mouseY;
@@ -100,7 +96,7 @@ var draw() {
     //Drawing Vectors
     
     
-    //if(mousePressed){
+    //if(mouseIsPressed){
     vectorY = mouseY;
     //}
     
@@ -148,10 +144,9 @@ var draw() {
     fill(255, 0, 0);
     noStroke();
     ellipse(slitSlider*10 + 170, 20, 10, 10);
-    //if(mousePressed){
-	    if(mouseY < 50 && mouseX > 170 && mouseX < 370){
-		slitSlider = (mouseX-170)/10;
-		numSlits = round(slitSlider/2);
+    //if(mouseIsPressed && mouseY < 50 && mouseX > 170 && mouseX < 370){
+        slitSlider = (mouseX-170)/10;
+        numSlits = round(slitSlider/2);
     //}
     
     //Text on screen
