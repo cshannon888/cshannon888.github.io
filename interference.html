@@ -46,7 +46,7 @@ var draw() {
     
     if (mousePressed == true) {
         
-        if(firstMousePress === 0){
+        if(firstMousePress === 0 && mouseY > 50){
             yMin = mouseY;
             yMax = mouseY;
             firstMousePress = 1;
