@@ -79,7 +79,7 @@ var draw() {
             y = 400.0001;
         }
         
-        theta = atan((y-400)/length)*2;
+        theta = atan((y-400)/length)/2;
         phi = 2*pi*d*sin(theta)/wavelength;
         intensity = pow(sin(numSlits*phi/2)/(sin(phi/2)), 2);
         curveVertex(600-intensity*4, y);
