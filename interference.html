@@ -124,7 +124,7 @@ var draw() {
     noFill();
     rect(700, 20, 15, 15);
     fill(0, 0, 0);
-    text("Show\nEnvelope", 520, 25);
+    text("Show\nEnvelope", 720, 25);
     
     //Drawing Vectors
     
@@ -195,7 +195,7 @@ var draw() {
     ellipse(slitWidthSlider*10 + 470, 20, 10, 10);
     if(mousePressed == true && mouseY < 50 && mouseX > 470 && mouseX < 670){
         slitWidthSlider = (mouseX-470)/10;
-        slit_width = round(slitWidthSlider/20000);
+        slit_width = slitWidthSlider/20000;
     }
     
     
