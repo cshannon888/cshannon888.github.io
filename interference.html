@@ -185,17 +185,18 @@ var draw() {
     
     //Slit Width Slider
     stroke(0, 0, 0);
-    line(370, 20, 570, 20);
-    line(370, 10, 370, 30);
-    line(572, 10, 572, 30);
+    text("Slit Width:", 370, 20);
+    line(470, 20, 670, 20);
+    line(470, 10, 470, 30);
+    line(672, 10, 672, 30);
     fill(255, 0, 0);
     noStroke();
-    ellipse(slitWidthSlider*10 + 370, 20, 10, 10);
-    if(mouseIsPressed && mouseY < 50 && mouseX > 370 && mouseX < 570){
-        slitWidthSlider = (mouseX-370)/10;
+    ellipse(slitWidthSlider*10 + 470, 20, 10, 10);
+    if(mousePressed == true && mouseY < 50 && mouseX > 470 && mouseX < 670){
+        slitWidthSlider = (mouseX-470)/10;
         slit_width = round(slitWidthSlider/2);
     }
-    stroke(23, 0, 227);
+    //stroke(23, 0, 227);
     
     //Text on screen
     fill(0, 0, 0);
