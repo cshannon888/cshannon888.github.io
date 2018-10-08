@@ -41,11 +41,11 @@ noFill();
 strokeWeight(2);
 
 //Envelope box
-var mouseClicked = function(){
+void mouseClicked() {
     if(mouseX > 20 && mouseX < 30 && mouseY > 50 && mouseY < 60){
         envelope = !envelope;
     }
-};
+}
 
 var draw() {
     background(255, 255, 255);
