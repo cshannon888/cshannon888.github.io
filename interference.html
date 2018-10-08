@@ -103,8 +103,9 @@ var draw() {
         	intensity = intensity*pow(sin(beta/2)/(beta/2), 2);
         	fill(255, 0, 0);
 		noStroke();
-        	rect(501, 21, 13, 13);
-        	noFill();
+        	rect(501, 21, 13, 13);\
+		noFill();
+		stroke(23, 0, 227);
         }
 	
         //reset div by zero error
@@ -121,7 +122,7 @@ var draw() {
     noFill();
     rect(500, 20, 15, 15);
     fill(0, 0, 0);
-    text("Show Envelope", 520, 25);
+    text("Show Envelope", 520, 35);
     
     //Drawing Vectors
     
