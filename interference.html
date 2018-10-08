@@ -21,6 +21,10 @@ var theta = 0;
 var phi = 2*pi*d*sin(theta)/wavelength;
 var intensity = (sin(numSlits*theta/2)/sin(theta/2))^2;
 
+var slit_width = 0.001;
+var beta = 2*pi*slit_width*sin(theta)/wavelength;
+var envelope = false;
+
 var yMax = 400;
 var yMin = 400;
 
@@ -36,6 +40,12 @@ noFill();
 
 strokeWeight(2);
 
+//Envelope box
+var mouseClicked = function(){
+    if(mouseX > 20 && mouseX < 30 && mouseY > 50 && mouseY < 60){
+        envelope = !envelope;
+    }
+};
 
 var draw() {
     background(255, 255, 255);
@@ -81,9 +91,21 @@ var draw() {
         
         theta = atan((y-400)/length)/2;
         phi = 2*pi*d*sin(theta)/wavelength;
-        intensity = pow(sin(numSlits*phi/2)/(sin(phi/2)), 2);
         curveVertex(600-intensity*4, y);
         
+	//single slit diffraction
+        beta = 2*pi*slit_width*sin(theta)/wavelength;
+        
+        //final calculation
+        intensity = pow(sin(numSlits*phi/2)/(sin(phi/2)), 2);
+        
+        if(envelope === true){
+        	intensity = intensity*pow(sin(beta/2)/(beta/2), 2);
+        	fill(255, 0, 0);
+        	rect(20, 50, 10, 10);
+        	noFill();
+        }
+	
         //reset div by zero error
         if(y===400.0001){
             y = 400;
@@ -92,6 +114,12 @@ var draw() {
 
     }
     endShape();
+    
+    //envelope option
+    stroke(0, 0, 0);
+    noFill();
+    rect(20, 100, 15, 15);
+    text("Show Envelope", 20, 100);
     
     //Drawing Vectors
     
