@@ -42,7 +42,7 @@ strokeWeight(2);
 
 //Envelope box
 void mouseClicked() {
-    if(mouseX > 20 && mouseX < 30 && mouseY > 50 && mouseY < 60){
+    if(mouseX > 500 && mouseX < 515 && mouseY > 20 && mouseY < 35){
         envelope = !envelope;
     }
 }
@@ -102,7 +102,7 @@ var draw() {
         if(envelope === true){
         	intensity = intensity*pow(sin(beta/2)/(beta/2), 2);
         	fill(255, 0, 0);
-        	rect(20, 50, 10, 10);
+        	rect(517.5, 22.5, 10, 10);
         	noFill();
         }
 	
@@ -118,8 +118,8 @@ var draw() {
     //envelope option
     stroke(0, 0, 0);
     noFill();
-    rect(20, 100, 15, 15);
-    text("Show Envelope", 20, 100);
+    rect(500, 20, 15, 15);
+    text("Show Envelope", 520, 20);
     
     //Drawing Vectors
     
