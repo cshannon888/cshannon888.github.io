@@ -44,7 +44,7 @@ strokeWeight(2);
 
 //Envelope box
 void mouseClicked() {
-    if(mouseX > 500 && mouseX < 515 && mouseY > 20 && mouseY < 35){
+    if(mouseX > 700 && mouseX < 715 && mouseY > 20 && mouseY < 35){
         envelope = !envelope;
     }
 }
@@ -105,7 +105,7 @@ var draw() {
         	intensity = intensity*pow(sin(beta/2)/(beta/2), 2);
         	fill(255, 0, 0);
 		noStroke();
-        	rect(501, 21, 13, 13);
+        	rect(701, 21, 13, 13);
 		noFill();
 		stroke(23, 0, 227);
         }
@@ -122,9 +122,9 @@ var draw() {
     //envelope option
     stroke(0, 0, 0);
     noFill();
-    rect(500, 20, 15, 15);
+    rect(700, 20, 15, 15);
     fill(0, 0, 0);
-    text("Show Envelope", 520, 35);
+    text("Show\nEnvelope", 520, 25);
     
     //Drawing Vectors
     
@@ -185,7 +185,8 @@ var draw() {
     
     //Slit Width Slider
     stroke(0, 0, 0);
-    text("Slit Width:", 370, 20);
+    fill(0, 0, 0);
+    text("Slit Width:", 400, 25);
     line(470, 20, 670, 20);
     line(470, 10, 470, 30);
     line(672, 10, 672, 30);
@@ -194,9 +195,9 @@ var draw() {
     ellipse(slitWidthSlider*10 + 470, 20, 10, 10);
     if(mousePressed == true && mouseY < 50 && mouseX > 470 && mouseX < 670){
         slitWidthSlider = (mouseX-470)/10;
-        slit_width = round(slitWidthSlider/2);
+        slit_width = round(slitWidthSlider/20000);
     }
-    //stroke(23, 0, 227);
+    
     
     //Text on screen
     fill(0, 0, 0);
