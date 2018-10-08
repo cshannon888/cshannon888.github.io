@@ -190,11 +190,12 @@ var draw() {
     line(572, 10, 572, 30);
     fill(255, 0, 0);
     noStroke();
-    ellipse(slitWidthSlider*10 + 170, 20, 10, 10);
+    ellipse(slitWidthSlider*10 + 370, 20, 10, 10);
     if(mouseIsPressed && mouseY < 50 && mouseX > 370 && mouseX < 570){
         slitWidthSlider = (mouseX-370)/10;
         slit_width = round(slitWidthSlider/2);
     }
+    stroke(23, 0, 227);
     
     //Text on screen
     fill(0, 0, 0);
