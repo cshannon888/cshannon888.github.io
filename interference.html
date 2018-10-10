@@ -99,7 +99,8 @@ var draw() {
         beta = 2*pi*slit_width*sin(theta)/wavelength;
         
         //final calculation
-        intensity = pow(sin(numSlits*phi/2)/(sin(phi/2)), 2);
+        intensity = pow(sin(numSlits*phi/2)/(sin(phi/2))*10/numSlits, 2);
+	//if(numSlits = 1){ intensity = intensity*5)}
         
         if(envelope === true){
         	intensity = intensity*pow(sin(beta/2)/(beta/2), 2);
