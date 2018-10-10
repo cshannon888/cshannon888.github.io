@@ -200,7 +200,7 @@ var draw() {
     ellipse(slitWidthSlider*10 + 470, 20, 10, 10);
     if(mousePressed == true && mouseY < 50 && mouseX > 470 && mouseX < 670){
         slitWidthSlider = (mouseX-470)/10;
-        slit_width = slitWidthSlider/20000;
+        slit_width = slit_width + slitWidthSlider/20000;
     }
     
     
