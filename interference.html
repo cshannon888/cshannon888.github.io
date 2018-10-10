@@ -21,7 +21,7 @@ var theta = 0;
 var phi = 2*pi*d*sin(theta)/wavelength;
 var intensity = (sin(numSlits*theta/2)/sin(theta/2))^2;
 
-var slit_width = 0.0015;
+var slit_width = 0.0006;
 var beta = 2*pi*slit_width*sin(theta)/wavelength;
 var envelope = false;
 
@@ -99,7 +99,7 @@ var draw() {
         beta = 2*pi*slit_width*sin(theta)/wavelength;
         
         //final calculation
-        intensity = pow(sin(numSlits*phi/2)/(sin(phi/2))*2/numSlits, 2);
+        intensity = pow(sin(numSlits*phi/2)/(sin(phi/2)), 2);
 	
 	//scaling
 	if(numSlits === 1){
