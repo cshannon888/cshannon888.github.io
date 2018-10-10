@@ -99,11 +99,11 @@ var draw() {
         beta = 2*pi*slit_width*sin(theta)/wavelength;
         
         //final calculation
-        intensity = pow(sin(numSlits*phi/2)/(sin(phi/2)), 2);
+        intensity = pow(sin(numSlits*phi/2)/(sin(phi/2))*1.5, 2);
 	
 	//scaling
 	if(numSlits === 1){
-		intensity = intensity*5;
+		//intensity = intensity*5;
 	}
         
         if(envelope === true){
@@ -200,7 +200,7 @@ var draw() {
     ellipse(slitWidthSlider*10 + 470, 20, 10, 10);
     if(mousePressed == true && mouseY < 50 && mouseX > 470 && mouseX < 670){
         slitWidthSlider = (mouseX-470)/10;
-        slit_width = slit_width + slitWidthSlider/20000;
+        slit_width = 0.002 + slitWidthSlider/20000;
     }
     
     
