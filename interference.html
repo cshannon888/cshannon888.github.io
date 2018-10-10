@@ -143,8 +143,8 @@ var draw() {
     theta = atan((vectorY-400)/length)/2;
     phi = 2*pi*d*sin(theta)/wavelength;
         
-    var vecX1 = 100;
-    var vecY1 = 100;
+    var vecX1 = 200;
+    var vecY1 = 200;
     var vecX2;
     var vecY2;
     
@@ -157,8 +157,8 @@ var draw() {
         
         stroke(0, 0, 0);
         
-        vecX2 = vecX1 + cos(newPhi)*20;
-        vecY2 = vecY1 + sin(newPhi)*20;
+        vecX2 = vecX1 + cos(newPhi)*40;
+        vecY2 = vecY1 + sin(newPhi)*40;
         
         
         line(vecX1, vecY1, vecX2, vecY2);
@@ -173,7 +173,7 @@ var draw() {
     
     //Sum of vectors
     stroke(255, 0, 0);
-    line(100, 100, vecX2, vecY2);
+    line(200, 200, vecX2, vecY2);
     
     //Number of Slits Slider
     stroke(0, 0, 0);
